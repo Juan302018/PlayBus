@@ -52,24 +52,18 @@ $app->get
 $app->get
 (
     '/api/playbusAccesoLista/',function(){
-        $al = new mobile_controller();
-        $resp = $al->listarTodosLosAccesos();
+        $a = new mobile_controller();
+        $resp = $a->listarTodosLosAccesos();
+        // Valida respuesta de la consulta
         if (count($resp) > 0){
             $codRespuesta = 1;
-            $msgRespuesta="Sistema tiene accesos";
-        }
-        /** 
-        * else if($resp->setStatus()==200){
-            $codRespuesta= 0;
-            $msgRespuesta= "Sistema no tiene accesos";
-        }
-    */
-        else{
+            $msgRespuesta = "Sistema tiene usuarios de acceso";
+        }else{
             $codRespuesta = 0;
-            $msgRespuesta = "Sistema no tiene usuarios";
+            $msgRespuesta = "Sistema no tiene usuarios de acceso";
         }
-        // Salida del Json Response(ApiRest)
-        $pJson = json_decode(array("codRespuesta" =>$codRespuesta, "msgRespuesta"=>$msgRespuesta, "lista"=>array_values($resp)));
+        // Salida Json
+        $pJson = json_encode(array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta,"lista"=>array_values($resp)));
         echo $pJson;
     }
 

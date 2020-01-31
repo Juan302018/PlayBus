@@ -58,7 +58,7 @@ class mobile_model{
     }
     
     // JF- 27-01-2020 Método CRUD GET para listar los Accesos.
-    public public function get_acceso(){
+    public function get_acceso(){
         $sql = "select user_acceso, pws_acceso, perfil_acceso, estado_acceso from playbus_acceso";
 
         $consulta = $this->db->query($sql);
