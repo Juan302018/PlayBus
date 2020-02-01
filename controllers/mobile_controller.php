@@ -22,6 +22,12 @@ class mobile_controller
                 $valor = $class->get_acceso();
                 return $valor;
         }
+		// Registrar accesos de usuarios
+		function regAcceso($user,$pws,$perfil,$estado){
+			$class = new mobile_model();
+			$valor = $class->reg_acceso($user,$pws,$perfil,$estado);
+			return $valor;
+		}
 
 }
 

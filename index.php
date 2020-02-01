@@ -1,110 +1,18 @@
-<?php
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
-header("Access-Control-Allow-Headers: X-Requested-With");
-//incluir archivos utilitarios
-require_once("controllers/mobile_controller.php");
-
-//incluir el archivo principal Slim
-include("Slim/Slim.php");
-//registran la instancia de slim
-\Slim\Slim::registerAutoloader();
-//aplicacion 
-$app = new \Slim\Slim();
-
-//routing 
-//accediendo VIA URL
-$app->get(
-    '/',function() use ($app){
-    
-
-    echo "Servicios Proyecto PlayBus.";
-    }
-)
-->setParams(array($app));
-
-//routing playbusUsuarios
-//accediendo VIA URL
-$app->get
-(
-    '/api/playbusUsuariosLista/', function(){
-        // No valida parametros de entrada
-        $a= new mobile_controller();
-        $resp = $a->listarTodosLosUsuarios();
-        // Valida respuesta de la consulta
-        if (count($resp) > 0){
-            $codRespuesta = 1;
-            $msgRespuesta = "Sistema tiene usuarios";
-        }else{
-            $codRespuesta = 0;
-            $msgRespuesta = "Sistema no tiene usuarios";
-        }
-        // Salida Json
-        $pJson = json_encode(array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta,"lista"=>array_values($resp)));
-        echo $pJson;
-        }
-);
-
-
-//routing playbusUsuarios
-//accediendo VIA URL
-// Controlador de Acceso
-$app->get
-(
-    '/api/playbusAccesoLista/',function(){
-        $a = new mobile_controller();
-        $resp = $a->listarTodosLosAccesos();
-        // Valida respuesta de la consulta
-        if (count($resp) > 0){
-            $codRespuesta = 1;
-            $msgRespuesta = "Sistema tiene usuarios de acceso";
-        }else{
-            $codRespuesta = 0;
-            $msgRespuesta = "Sistema no tiene usuarios de acceso";
-        }
-        // Salida Json
-        $pJson = json_encode(array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta,"lista"=>array_values($resp)));
-        echo $pJson;
-    }
-
-);
-
-//routing playbusUsuarios
-//accediendo VIA URL
-$app->post
-(
-    '/api/playbusUsuarios/', function(){
-        $rut = $_POST['rut'];
-        $correo = $_POST['correo'];
-        $bus = $_POST['bus'];
-        // Valida parametros de entrada
-        if ($rut != null &&  $correo != null){
-            $a= new mobile_controller();
-            $d1 = $a->regUsuario($rut,$correo,$bus);
-            // Valida respuesta del registro
-            if ($d1 == '1'){
-                $codRespuesta = $d1;
-                $msgRespuesta = "Usuario Registrado OK";
-            } elseif ($d1 == '0') {
-                $codRespuesta = $d1;
-                $msgRespuesta = "Usuario ya existe";
-            } else {
-                $codRespuesta = -1;
-                $msgRespuesta = "Error al registrar";
-            }
-        }else{
-            $codRespuesta = -2;
-            $msgRespuesta = "Parametros requeridos";
-        }
-
-        $dData = array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta);
-        $dJson = json_encode($dData, JSON_FORCE_OBJECT);
-        echo $dJson;
-        }
-);
-
-
-
-//inicializamos la aplicacion(API)
-$app->run();
-?>
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="6">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1136" startPos="35" endPos="23" selMode="0" lang="Normal Text" encoding="-1" userReadOnly="no" filename="C:\Users\Jfernandez\Desktop\passCRS" backupFilePath="" originalFileLastModifTimestamp="1919887019" originalFileLastModifTimestampHigh="30787441" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="7209018" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="288" startPos="0" endPos="0" selMode="0" lang="Properties" encoding="-1" userReadOnly="no" filename="C:\actis\idd2016\idatum-war\src\main\resources\const.properties" backupFilePath="" originalFileLastModifTimestamp="228975763" originalFileLastModifTimestampHigh="30790966" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="168632352" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="66" xOffset="0" scrollWidth="912" startPos="1233" endPos="1233" selMode="0" lang="Normal Text" encoding="-1" userReadOnly="no" filename="C:\Users\Jfernandez\Desktop\Escalab\Spring Boot\Documentaci&#x00F3;n\Class_N&#x00B0;1" backupFilePath="" originalFileLastModifTimestamp="-1080524956" originalFileLastModifTimestampHigh="30791227" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="5114" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="992" startPos="539" endPos="539" selMode="0" lang="Normal Text" encoding="-1" userReadOnly="no" filename="C:\actis\jboss-as\version.txt" backupFilePath="C:\Users\Jfernandez\AppData\Roaming\Notepad++\backup\version.txt@2020-01-31_123356" originalFileLastModifTimestamp="159142032" originalFileLastModifTimestampHigh="30791654" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="7209018" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="75" xOffset="0" scrollWidth="1184" startPos="1004" endPos="1004" selMode="0" lang="PHP" encoding="-1" userReadOnly="no" filename="C:\xampp\htdocs\ServiciosPHP\models\mobile_model.php" backupFilePath="" originalFileLastModifTimestamp="-1274111054" originalFileLastModifTimestampHigh="30791661" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="0" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="544" startPos="802" endPos="811" selMode="0" lang="PHP" encoding="-1" userReadOnly="no" filename="C:\xampp\htdocs\ServiciosPHP\controllers\mobile_controller.php" backupFilePath="" originalFileLastModifTimestamp="-2031211245" originalFileLastModifTimestampHigh="30791661" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="0" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="75" xOffset="0" scrollWidth="1040" startPos="2197" endPos="2197" selMode="0" lang="PHP" encoding="-1" userReadOnly="no" filename="C:\xampp\htdocs\ServiciosPHP\index.php" backupFilePath="" originalFileLastModifTimestamp="-2109300106" originalFileLastModifTimestampHigh="30792000" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="1139539968" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="587" xOffset="0" scrollWidth="2840" startPos="0" endPos="0" selMode="0" lang="XML" encoding="-1" userReadOnly="no" filename="C:\actis\jboss-eap-7.2\standalone\configuration\standalone.xml" backupFilePath="" originalFileLastModifTimestamp="1979738999" originalFileLastModifTimestampHigh="30791800" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="7209018" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="15" xOffset="0" scrollWidth="824" startPos="0" endPos="0" selMode="0" lang="XML" encoding="-1" userReadOnly="no" filename="C:\actis\idd2016\pom.xml" backupFilePath="" originalFileLastModifTimestamp="1713272846" originalFileLastModifTimestampHigh="30791795" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="7209018" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="6" xOffset="0" scrollWidth="1632" startPos="756" endPos="756" selMode="0" lang="XML" encoding="-1" userReadOnly="no" filename="C:\actis\idd2016\idatum-war\pom.xml" backupFilePath="" originalFileLastModifTimestamp="-2025354432" originalFileLastModifTimestampHigh="30791791" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="7209018" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="472" startPos="281" endPos="281" selMode="0" lang="XML" encoding="-1" userReadOnly="no" filename="C:\actis\jboss-eap-7.2\modules\system\layers\base\org\postgresql\main\module.xml" backupFilePath="" originalFileLastModifTimestamp="-1548402022" originalFileLastModifTimestampHigh="30791759" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="0" mapWrapIndentMode="-1" mapIsWrap="no" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>
