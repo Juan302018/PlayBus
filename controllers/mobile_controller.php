@@ -22,6 +22,18 @@ class mobile_controller
                 $valor = $class->get_acceso();
                 return $valor;
         }
+	    // Listar todos los perfiles
+        function listarTodosLosPerfiles(){
+                $class = new mobile_model();
+                $valor = $class->get_perfil();
+                return $valor;
+	    }
+		// Listar todos los equipos
+        function listarTodosLosEquipos(){
+                $class = new mobile_model();
+                $valor = $class->get_equipo();
+                return $valor;
+        }
 		// Registrar accesos de usuarios
 		function regAcceso($user,$pws,$perfil,$estado){
 			$class = new mobile_model();
@@ -30,5 +42,6 @@ class mobile_controller
 		}
 
 }
+
 
 ?>

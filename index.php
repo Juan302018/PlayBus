@@ -45,10 +45,31 @@ $app->get
         }
 );
 
+//routing playbusUsuarios
+//accediendo VIA URL
+// APIRest de Perfil
+$app->get
+(
+    '/api/playbusPerfilLista/',function(){
+        $al = new mobile_controller();
+        $resp = $al->listarTodosLosPerfiles();
+        if (count($resp) > 0){
+            $codRespuesta = 1;
+            $msgRespuesta="Sistema tiene perfiles";
+        }else{
+            $codRespuesta= 0;
+            $msgRespuesta= "Sistema no tiene perfiles";
+        }
+        // Salida del Json Response(ApiRest)
+        $pJson = json_encode(array("codRespuesta" =>$codRespuesta, "msgRespuesta"=>$msgRespuesta, "lista"=>array_values($resp)));
+        echo $pJson;
+    }
+
+);
 
 //routing playbusUsuarios
 //accediendo VIA URL
-// Controlador de Acceso
+// APIRest de Acceso
 $app->get
 (
     '/api/playbusAccesoLista/',function(){
@@ -62,7 +83,29 @@ $app->get
             $msgRespuesta= "Sistema no tiene accesos";
         }
         // Salida del Json Response(ApiRest)
-        $pJson = json_decode(array("codRespuesta" =>$codRespuesta, "msgRespuesta"=>$msgRespuesta, "lista"=>array_values($resp)));
+        $pJson = json_encode(array("codRespuesta" =>$codRespuesta, "msgRespuesta"=>$msgRespuesta, "lista"=>array_values($resp)));
+        echo $pJson;
+    }
+
+);
+
+//routing playbusUsuarios
+//accediendo VIA URL
+// APIRest de Equipos
+$app->get
+(
+    '/api/playbusEquipoLista/',function(){
+        $al = new mobile_controller();
+        $resp = $al->listarTodosLosEquipos();
+        if (count($resp) > 0){
+            $codRespuesta = 1;
+            $msgRespuesta="Sistema tiene equipos";
+        }else{
+            $codRespuesta= 0;
+            $msgRespuesta= "Sistema no tiene equipos";
+        }
+        // Salida del Json Response(ApiRest)
+        $pJson = json_encode(array("codRespuesta" =>$codRespuesta, "msgRespuesta"=>$msgRespuesta, "lista"=>array_values($resp)));
         echo $pJson;
     }
 

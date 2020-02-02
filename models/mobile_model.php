@@ -10,6 +10,8 @@ class mobile_model{
         $this->accesos=array();
         $this->personasPms=array();
         $this->usuarios=array();
+		$this->perfiles=array();
+		$this->equipos=array();
         $this->proyectos=array();
         $this->hitoso=array();
         $this->hitosf=array();
@@ -55,6 +57,30 @@ class mobile_model{
             return '-1';
         }
     
+    }
+	
+    // JF- 02-02-2020 Método CRUD GET para listar los Perfiles.
+    public function get_perfil(){
+        $sql = "select id_perfil, nom_perfil from playbus_perfiles";
+
+        $consulta = $this->db->query($sql);
+        while ($filas=$consulta->fetch_assoc()) {
+            $this->perfiles[]=$filas;
+        }
+
+        return $this->perfiles;
+    }
+	
+	// JF- 02-02-2020 Método CRUD GET para listar los Equipos.
+    public function get_equipo(){
+        $sql = "select id_equipo, nombre_equipo, codigo_equipo, Empresa, flota from playbus_equipos";
+
+        $consulta = $this->db->query($sql);
+        while ($filas=$consulta->fetch_assoc()) {
+            $this->equipos[]=$filas;
+        }
+
+        return $this->equipos;
     }
 	
     // JF- 27-01-2020 Método CRUD GET para listar los Accesos.
