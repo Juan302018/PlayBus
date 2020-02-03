@@ -89,7 +89,7 @@ $app->get
 
 );
 
-//routing playbusUsuarios
+//routing playbusEquipos
 //accediendo VIA URL
 // APIRest de Equipos
 $app->get
@@ -111,7 +111,7 @@ $app->get
 
 );
 
-//routing playbusUsuarios
+//routing playbusAccesos
 //accediendo VIA URL
 // Controlado Insertar Accesos
 $app->post
@@ -140,9 +140,44 @@ $app->post
             $codRespuesta = -2;
             $msgRespuesta = "Paramétros requeridos";
         }
+        $dData = array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta);
+        //$dJson = json_encode(array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta));
+        $dJson = json_encode($dData, JSON_FORCE_OBJECT);
+        echo $dJson;
+        }
+);
 
-        $dJson = json_encode(array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta));
-        //$dJson = json_encode($dData, JSON_FORCE_OBJECT);
+//routing playbusEquipos
+//accediendo VIA URL
+$app->post
+(
+    '/api/playbusEquipos/', function(){
+        $nombre = $_POST['nombre'];
+        $codigo = $_POST['codigo'];
+        $empresa = $_POST['empresa'];
+		$flota = $_POST['flota'];
+        // Valida parametros de entrada
+        if ($nombre != null &&  $codigo != null &&  $empresa != null &&  $flota != null){
+            $mc= new mobile_controller();
+            $d1 = $mc->regEquipo($nombre,$codigo,$empresa,$flota);
+            // Valida respuesta del registro
+            if ($d1 == '1'){
+                $codRespuesta = $d1;
+                $msgRespuesta = "Equipo Registrado OK";
+            } elseif ($d1 == '0') {
+                $codRespuesta = $d1;
+                $msgRespuesta = "Equipo ya existe";
+            } else {
+                $codRespuesta = -1;
+                $msgRespuesta = "Error al registrar";
+            }
+        }else{
+            $codRespuesta = -2;
+            $msgRespuesta = "Parámetros requeridos";
+        }
+
+        $dData = array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta);
+        $dJson = json_encode($dData, JSON_FORCE_OBJECT);
         echo $dJson;
         }
 );

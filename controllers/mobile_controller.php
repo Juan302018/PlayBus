@@ -34,6 +34,12 @@ class mobile_controller
                 $valor = $class->get_equipo();
                 return $valor;
         }
+	    // Registrar equipos de usuarios
+		function regEquipo($nombre,$codigo,$empresa,$flota){
+			$class = new mobile_model();
+			$valor = $class->reg_acceso($nombre,$codigo,$empresa,$flota);
+			return $valor;
+		}
 		// Registrar accesos de usuarios
 		function regAcceso($user,$pws,$perfil,$estado){
 			$class = new mobile_model();

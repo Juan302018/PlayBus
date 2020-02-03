@@ -73,7 +73,7 @@ class mobile_model{
 	
 	// JF- 02-02-2020 Método CRUD GET para listar los Equipos.
     public function get_equipo(){
-        $sql = "select id_equipo, nombre_equipo, codigo_equipo, Empresa, flota from playbus_equipos";
+        $sql = "select id_equipo, nombre_equipo, codigo_equipo, empresa_equipo, flota_equipo from playbus_equipos";
 
         $consulta = $this->db->query($sql);
         while ($filas=$consulta->fetch_assoc()) {
@@ -114,6 +114,30 @@ class mobile_model{
 			}
 		}catch (Exception $e){
 			// echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+			return '-1';
+		}
+		
+	}
+
+    // JF- 02-01-2020 Método CRUD POST para insertar los Equipos.
+	public function reg_equipo($nombre,$codigo,$empresa,$flota){
+		try{
+			$insert ="insert into playbus_equipos
+			(nombre_equipo,codigo_equipo,empresa_equipo,flota_equipo) 
+			values ('".$nombre."','".$codigo."','".$empresa."','".$flota."');";
+			
+			if( $consulta= $this->db->query($insert)===TRUE)
+			{
+				echo "Datos insertados exitosamente";
+				return '1';
+			}
+			else
+			{
+				echo "Datos no insertados";
+				return '-1';
+			}
+		}catch (Exception $e){
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 			return '-1';
 		}
 		
