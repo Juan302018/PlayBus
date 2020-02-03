@@ -142,7 +142,31 @@ class mobile_model{
 		}
 		
 	}
-
+	
+	// JF- 02-01-2020 Método CRUD POST para insertar los Perfiles.
+	public function reg_perfil($nombre){
+		try{
+			$insert ="insert into playbus_perfiles
+			(nom_perfil) 
+			values ('".$nombre."');";
+			
+			if( $consulta= $this->db->query($insert)===TRUE)
+			{
+				echo "Datos insertados exitósamente";
+				return '1';
+			}
+			else
+			{
+				echo "Datos no insertados";
+				return '-1';
+			}
+		}catch (Exception $e){
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+			return '-1';
+		}
+		
+	}
+ 
     public function get_personasPms(){
 
         $sql = "select nombrePms, usuarioPms, idPms from usuario where tipoPms = 1 ";

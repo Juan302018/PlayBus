@@ -37,7 +37,13 @@ class mobile_controller
 	    // Registrar equipos de usuarios
 		function regEquipo($nombre,$codigo,$empresa,$flota){
 			$class = new mobile_model();
-			$valor = $class->reg_acceso($nombre,$codigo,$empresa,$flota);
+			$valor = $class->reg_equipo($nombre,$codigo,$empresa,$flota);
+			return $valor;
+		}
+	    // Registrar perfiles de usuarios
+		function regPerfil($nombre){
+			$class = new mobile_model();
+			$valor = $class->reg_perfil($nombre);
 			return $valor;
 		}
 		// Registrar accesos de usuarios

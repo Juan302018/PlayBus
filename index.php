@@ -124,7 +124,7 @@ $app->post
         // Valida parametros de entrada
         if ($user != null &&  $pws != null &&  $perfil != null &&  $estado != null){
             $a= new mobile_controller();
-            $d1 = $a->regUsuario($user,$pws,$perfil,$estado);
+            $d1 = $a->regAcceso($user,$pws,$perfil,$estado);
             // Valida respuesta del registro
             if ($d1 == '1'){
                 $codRespuesta = $d1;
@@ -182,6 +182,37 @@ $app->post
         }
 );
 
+//routing playbusPerfiles
+//accediendo VIA URL
+$app->post
+(
+    '/api/playbusPerfiles/', function(){
+        $nombre = $_POST['nombre'];
+        // Valida parametros de entrada
+        if ($nombre != null){
+            $mc= new mobile_controller();
+            $d1 = $mc->regPerfil($nombre);
+            // Valida respuesta del registro
+            if ($d1 == '1'){
+                $codRespuesta = $d1;
+                $msgRespuesta = "Perfil Registrado OK";
+            } elseif ($d1 == '0') {
+                $codRespuesta = $d1;
+                $msgRespuesta = "Perfil ya existe";
+            } else {
+                $codRespuesta = -1;
+                $msgRespuesta = "Error al registrar";
+            }
+        }else{
+            $codRespuesta = -2;
+            $msgRespuesta = "Parámetros requeridos";
+        }
+
+        $dData = array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta);
+        $dJson = json_encode($dData, JSON_FORCE_OBJECT);
+        echo $dJson;
+        }
+);
 
 //routing playbusUsuarios
 //accediendo VIA URL
