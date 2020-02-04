@@ -111,6 +111,56 @@ $app->get
 
 );
 
+//routing login
+//accediendo VIA URL
+$app->post
+(
+    '/api/login/', function(){
+        $usuario = $_POST['usuario'];
+        $clave = $_POST['clave'];
+        $a= new mobile_controller();  
+        $name = $a->obtenerAcceso($usuario);
+        
+        if (count($name) > 0){
+
+            $tmp = $name[0]["pws_acceso"];
+
+            if($clave==$tmp){
+                $codRespuesta = 0;
+                $msgRespuesta = "OK";
+                $nomUser = $name[0]["user_acceso"];
+                $idUser = $name[0]["id_acceso"];
+                $permiso = $name[0]["perfil_acceso"];
+            }else{
+                $codRespuesta = -2;
+                $msgRespuesta = "Clave invalida";
+                $nomUser = "Error";
+                $idUser = "0";
+                $permiso = "0";
+            }
+
+        }else{
+            $codRespuesta = -1;
+            $msgRespuesta = "Usuario no existe";
+            $nomUser = "Error";
+            $idUser = "0";
+            $permiso = "0";
+        }
+
+        $userData = array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta, "nomUser"=>$nomUser, "idUser"=>$idUser, "permiso"=>$permiso);
+        $usuarioJson = json_encode($userData, JSON_FORCE_OBJECT);
+        echo $usuarioJson;
+        }
+);
+
+//routing login
+//accediendo VIA URL
+$app->put('/api/login/', function ($request, $response) {
+    $input = $request->getParsedBody();
+    $input[‘correo’] = $args[‘correo’];
+    return $this->response->withJson($input);
+});
+
 //routing playbusAccesos
 //accediendo VIA URL
 // Controlado Insertar Accesos
@@ -247,7 +297,6 @@ $app->post
         echo $dJson;
         }
 );
-
 
 
 //inicializamos la aplicacion(API)

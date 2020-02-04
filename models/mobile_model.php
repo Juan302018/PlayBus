@@ -8,6 +8,7 @@ class mobile_model{
         $this->db=Conectar::conexion();
         $this->personas=array();
         $this->accesos=array();
+        $this->accesosUser=array();
         $this->personasPms=array();
         $this->usuarios=array();
 		$this->perfiles=array();
@@ -93,6 +94,19 @@ class mobile_model{
         }
 
         return $this->accesos;
+    }
+
+    // Consulta acceso por usuario
+    public function get_accesoByUser($usuario){
+        $sql = "select id_acceso, user_acceso, pws_acceso, perfil_acceso, estado_acceso from playbus_acceso ";
+        $sql = $sql . "where user_acceso = '".$usuario."' ";
+        echo $sql;
+        $consulta = $this->db->query($sql);
+        while ($filas=$consulta->fetch_assoc()) {
+            $this->accesosUser[]=$filas;
+        }
+
+        return $this->accesosUser;
     }
 	
 	// JF- 31-01-2020 Método CRUD POST para insertar los Accesos.

@@ -22,6 +22,12 @@ class mobile_controller
                 $valor = $class->get_acceso();
                 return $valor;
         }
+
+        function obtenerAcceso($usuario){
+                $class = new mobile_model();
+                $valor = $class->get_accesoByUser($usuario);
+                return $valor;
+        }
 	    // Listar todos los perfiles
         function listarTodosLosPerfiles(){
                 $class = new mobile_model();
