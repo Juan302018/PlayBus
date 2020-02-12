@@ -100,7 +100,6 @@ class mobile_model{
     public function get_accesoByUser($usuario){
         $sql = "select id_acceso, user_acceso, pws_acceso, perfil_acceso, estado_acceso from playbus_acceso ";
         $sql = $sql . "where user_acceso = '".$usuario."' ";
-        echo $sql;
         $consulta = $this->db->query($sql);
         while ($filas=$consulta->fetch_assoc()) {
             $this->accesosUser[]=$filas;
