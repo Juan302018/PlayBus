@@ -26,6 +26,10 @@ $app->get(
 
 //routing playbusUsuarios
 //accediendo VIA URL
+$app->options('/api/playbusUsuariosLista/', function ($request, $response, $args) {
+    return $response;
+});
+
 $app->get
 (
     '/api/playbusUsuariosLista/', function(){
@@ -49,6 +53,10 @@ $app->get
 //routing playbusUsuarios
 //accediendo VIA URL
 // APIRest de Perfil
+$app->options('/api/playbusPerfilLista/', function ($request, $response, $args) {
+    return $response;
+});
+
 $app->get
 (
     '/api/playbusPerfilLista/',function(){
@@ -71,6 +79,11 @@ $app->get
 //routing playbusUsuarios
 //accediendo VIA URL
 // APIRest de Acceso
+
+$app->options('/api/playbusAccesoLista/', function ($request, $response, $args) {
+    return $response;
+});
+
 $app->get
 (
     '/api/playbusAccesoLista/',function(){
@@ -93,6 +106,11 @@ $app->get
 //routing playbusEquipos
 //accediendo VIA URL
 // APIRest de Equipos
+
+$app->options('/api/playbusEquipoLista/', function ($request, $response, $args) {
+    return $response;
+});
+
 $app->get
 (
     '/api/playbusEquipoLista/',function(){
@@ -162,14 +180,6 @@ $app->post
         echo $usuarioJson;
         }
 );
-
-//routing login
-//accediendo VIA URL
-$app->put('/api/login/', function ($request, $response) {
-    $input = $request->getParsedBody();
-    $input[‘correo’] = $args[‘correo’];
-    return $this->response->withJson($input);
-});
 
 //routing playbusAccesos
 //accediendo VIA URL
