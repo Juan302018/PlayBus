@@ -1,7 +1,8 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
-header("Access-Control-Allow-Headers: X-Requested-With");
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header("Access-Control-Allow-Headers: Origin, Content-Type, Accept, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 //incluir archivos utilitarios
 require_once("controllers/mobile_controller.php");
 
@@ -113,11 +114,20 @@ $app->get
 
 //routing login
 //accediendo VIA URL
+$app->options('/api/login/', function ($request, $response, $args) {
+    return $response;
+});
+
 $app->post
 (
-    '/api/login/', function(){
-        $usuario = $_POST['usuario'];
-        $clave = $_POST['clave'];
+    '/api/login/', function() use ($app){
+		
+		$parameters = json_decode($app->request()->getBody(), TRUE);
+		$usuario = $parameters['Usuario'];
+		$clave = $parameters['Password'];
+        //$usuario = $_POST['Usuario'];
+        //$clave = $_POST['Password'];
+		
         $a= new mobile_controller();  
         $name = $a->obtenerAcceso($usuario);
         
