@@ -27,7 +27,7 @@ class mobile_model{
 
     public function get_usuarios(){
 
-        $sql = "select id_usuario, rut_usuario, correo_usuario from playbus_usuarios ";
+        $sql = "select id_usuario, rut_usuario, correo_usuario, id_bus_usuario, fecha_reg_usuario from playbus_usuarios ";
 
         $consulta=$this->db->query($sql);
         while($filas=$consulta->fetch_assoc()){
