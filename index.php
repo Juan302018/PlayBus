@@ -184,13 +184,19 @@ $app->post
 //routing playbusAccesos
 //accediendo VIA URL
 // Controlado Insertar Accesos
+$app->options('/api/playbusAccesos/', function ($request, $response, $args) {
+    return $response;
+});
+
 $app->post
 (
-    '/api/playbusAccesos/', function(){
-        $user = $_POST['user'];
-        $pws = $_POST['pws'];
-        $perfil = $_POST['perfil'];
-		$estado = $_POST['estado'];
+    '/api/playbusAccesos/', function() use ($app){
+    
+        $parameters = json_decode($app->request()->getBody(), TRUE);
+        $user = $parameters['user'];
+        $pws = $parameters['pws'];
+        $perfil = $parameters['perfil'];
+		$estado = $parameters['estado'];
         // Valida parametros de entrada
         if ($user != null &&  $pws != null &&  $perfil != null &&  $estado != null){
             $a= new mobile_controller();
@@ -205,6 +211,84 @@ $app->post
             } else {
                 $codRespuesta = -1;
                 $msgRespuesta = "Error al registrar Acceso!";
+            }
+        }else{
+            $codRespuesta = -2;
+            $msgRespuesta = "Paramétros requeridos";
+        }
+        $dData = array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta);
+        //$dJson = json_encode(array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta));
+        $dJson = json_encode($dData, JSON_FORCE_OBJECT);
+        echo $dJson;
+        }
+);
+
+//routing playbusAccesosActualizar
+//accediendo VIA URL
+// Controlado Insertar Accesos
+$app->options('/api/playbusAccesosActualizar/', function ($request, $response, $args) {
+    return $response;
+});
+
+$app->post
+(
+    '/api/playbusAccesosActualizar/', function() use ($app){
+    
+        $parameters = json_decode($app->request()->getBody(), TRUE);
+        $id = $parameters['id'];
+        $user = $parameters['user'];
+        $pws = $parameters['pws'];
+        $perfil = $parameters['perfil'];
+		$estado = $parameters['estado'];
+        // Valida parametros de entrada
+        if ($id != null && $user != null &&  $pws != null &&  $perfil != null &&  $estado != null){
+            $a= new mobile_controller();
+            $d1 = $a->udpAcceso($id,$user,$pws,$perfil,$estado);
+            // Valida respuesta del registro
+            if ($d1 == '1'){
+                $codRespuesta = 0;
+                $msgRespuesta = "Datos actualizado OK";
+    
+            }else{
+                $codRespuesta = -1;
+                $msgRespuesta = "No se logra actualizar";
+            }
+        }else{
+            $codRespuesta = -2;
+            $msgRespuesta = "Paramétros requeridos";
+        }
+        $dData = array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta);
+        //$dJson = json_encode(array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta));
+        $dJson = json_encode($dData, JSON_FORCE_OBJECT);
+        echo $dJson;
+        }
+);
+
+//routing playbusAccesosActualizar
+//accediendo VIA URL
+// Controlado Insertar Accesos
+$app->options('/api/playbusAccesosEliminar/', function ($request, $response, $args) {
+    return $response;
+});
+
+$app->post
+(
+    '/api/playbusAccesosEliminar/', function() use ($app){
+    
+        $parameters = json_decode($app->request()->getBody(), TRUE);
+        $id = $parameters['id'];
+        // Valida parametros de entrada
+        if ($id != null){
+            $a= new mobile_controller();
+            $d1 = $a->delAcceso($id);
+            // Valida respuesta del registro
+            if ($d1 == '1'){
+                $codRespuesta = 0;
+                $msgRespuesta = "Datos eliminados OK";
+    
+            }else{
+                $codRespuesta = -1;
+                $msgRespuesta = "No se logra eliminar";
             }
         }else{
             $codRespuesta = -2;

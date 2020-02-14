@@ -86,7 +86,7 @@ class mobile_model{
 	
     // JF- 27-01-2020 Método CRUD GET para listar los Accesos.
     public function get_acceso(){
-        $sql = "select user_acceso, pws_acceso, perfil_acceso, estado_acceso from playbus_acceso";
+        $sql = "select id_acceso, user_acceso, pws_acceso, perfil_acceso, estado_acceso from playbus_acceso";
 
         $consulta = $this->db->query($sql);
         while ($filas=$consulta->fetch_assoc()) {
@@ -178,7 +178,39 @@ class mobile_model{
 			return '-1';
 		}
 		
-	}
+    }
+    
+    public function udp_acceso($id,$user,$pws,$perfil,$estado){
+
+        $sql = " UPDATE playbus_acceso ";
+        $sql = $sql . " SET user_acceso = '".$user."' ";
+        $sql = $sql . " ,pws_acceso = '".$pws."' ";
+        $sql = $sql . " ,perfil_acceso = '".$perfil."' ";
+        $sql = $sql . " ,estado_acceso = '".$estado."' ";
+        $sql = $sql . " WHERE id_acceso = ".$id."; ";
+        //echo $sql;
+        if ($consulta= $this->db->query($sql)===TRUE) {
+            return "1";
+        } else {
+            echo "Error updating record: " . $conn->error;
+            return "-1";
+        }
+
+    }
+
+    public function del_acceso($id){
+
+        $sql = " DELETE from playbus_acceso ";
+        $sql = $sql . " WHERE id_acceso = ".$id."; ";
+        //echo $sql;
+        if ($consulta= $this->db->query($sql)===TRUE) {
+            return "1";
+        } else {
+            echo "Error deleting record: " . $conn->error;
+            return "-1";
+        }
+
+    }
  
     public function get_personasPms(){
 

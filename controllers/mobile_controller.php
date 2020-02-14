@@ -40,24 +40,36 @@ class mobile_controller
                 $valor = $class->get_equipo();
                 return $valor;
         }
-	    // Registrar equipos de usuarios
-		function regEquipo($nombre,$codigo,$empresa,$flota){
-			$class = new mobile_model();
-			$valor = $class->reg_equipo($nombre,$codigo,$empresa,$flota);
-			return $valor;
-		}
-	    // Registrar perfiles de usuarios
-		function regPerfil($nombre){
-			$class = new mobile_model();
-			$valor = $class->reg_perfil($nombre);
-			return $valor;
-		}
-		// Registrar accesos de usuarios
-		function regAcceso($user,$pws,$perfil,$estado){
-			$class = new mobile_model();
-			$valor = $class->reg_acceso($user,$pws,$perfil,$estado);
-			return $valor;
-		}
+        // Registrar equipos de usuarios
+        function regEquipo($nombre,$codigo,$empresa,$flota){
+                $class = new mobile_model();
+                $valor = $class->reg_equipo($nombre,$codigo,$empresa,$flota);
+                return $valor;
+        }
+        // Registrar perfiles de usuarios
+        function regPerfil($nombre){
+                $class = new mobile_model();
+                $valor = $class->reg_perfil($nombre);
+                return $valor;
+        }
+        // Registrar accesos de usuarios
+        function regAcceso($user,$pws,$perfil,$estado){
+                $class = new mobile_model();
+                $valor = $class->reg_acceso($user,$pws,$perfil,$estado);
+                return $valor;
+        }
+
+        function udpAcceso($id,$user,$pws,$perfil,$estado){
+                $class = new mobile_model();
+                $valor= $class->udp_acceso($id,$user,$pws,$perfil,$estado);
+                return $valor;
+        }
+
+        function delAcceso($id){
+                $class = new mobile_model();
+                $valor= $class->del_acceso($id);
+                return $valor;
+        }
 
 }
 
