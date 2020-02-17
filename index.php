@@ -303,13 +303,19 @@ $app->post
 
 //routing playbusEquipos
 //accediendo VIA URL
+$app->options('/api/playbusEquipos/', function ($request, $response, $args) {
+    return $response;
+});
+
 $app->post
-(
-    '/api/playbusEquipos/', function(){
-        $nombre = $_POST['nombre'];
-        $codigo = $_POST['codigo'];
-        $empresa = $_POST['empresa'];
-		$flota = $_POST['flota'];
+(    
+    '/api/playbusEquipos/', function() use ($app){
+
+        $parameters = json_decode($app->request()->getBody(), TRUE);
+        $nombre = $parameters['nombre'];
+        $codigo = $parameters['codigo'];
+        $empresa = $parameters['empresa'];
+		$flota = $parameters['flota'];
         // Valida parametros de entrada
         if ($nombre != null &&  $codigo != null &&  $empresa != null &&  $flota != null){
             $mc= new mobile_controller();

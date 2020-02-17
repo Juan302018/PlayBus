@@ -141,16 +141,16 @@ class mobile_model{
 			
 			if( $consulta= $this->db->query($insert)===TRUE)
 			{
-				echo "Datos insertados exitosamente";
+				// echo "Datos insertados exitosamente";
 				return '1';
 			}
 			else
 			{
-				echo "Datos no insertados";
+				// echo "Datos no insertados";
 				return '-1';
 			}
 		}catch (Exception $e){
-			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+			// echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 			return '-1';
 		}
 		
