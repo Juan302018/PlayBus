@@ -24,8 +24,7 @@ $app->get(
 )
 ->setParams(array($app));
 
-//routing playbusUsuarios
-//accediendo VIA URL
+//routing playbusUsuariosLista
 $app->options('/api/playbusUsuariosLista/', function ($request, $response, $args) {
     return $response;
 });
@@ -50,9 +49,7 @@ $app->get
         }
 );
 
-//routing playbusUsuarios
-//accediendo VIA URL
-// APIRest de Perfil
+//routing playbusPerfilLista
 $app->options('/api/playbusPerfilLista/', function ($request, $response, $args) {
     return $response;
 });
@@ -76,10 +73,7 @@ $app->get
 
 );
 
-//routing playbusUsuarios
-//accediendo VIA URL
-// APIRest de Acceso
-
+//routing playbusAccesoLista
 $app->options('/api/playbusAccesoLista/', function ($request, $response, $args) {
     return $response;
 });
@@ -103,10 +97,7 @@ $app->get
 
 );
 
-//routing playbusEquipos
-//accediendo VIA URL
-// APIRest de Equipos
-
+//routing playbusEquipoLista
 $app->options('/api/playbusEquipoLista/', function ($request, $response, $args) {
     return $response;
 });
@@ -131,7 +122,6 @@ $app->get
 );
 
 //routing login
-//accediendo VIA URL
 $app->options('/api/login/', function ($request, $response, $args) {
     return $response;
 });
@@ -143,8 +133,6 @@ $app->post
 		$parameters = json_decode($app->request()->getBody(), TRUE);
 		$usuario = $parameters['Usuario'];
 		$clave = $parameters['Password'];
-        //$usuario = $_POST['Usuario'];
-        //$clave = $_POST['Password'];
 		
         $a= new mobile_controller();  
         $name = $a->obtenerAcceso($usuario);
@@ -182,8 +170,6 @@ $app->post
 );
 
 //routing playbusAccesos
-//accediendo VIA URL
-// Controlado Insertar Accesos
 $app->options('/api/playbusAccesos/', function ($request, $response, $args) {
     return $response;
 });
@@ -224,8 +210,6 @@ $app->post
 );
 
 //routing playbusAccesosActualizar
-//accediendo VIA URL
-// Controlado Insertar Accesos
 $app->options('/api/playbusAccesosActualizar/', function ($request, $response, $args) {
     return $response;
 });
@@ -264,9 +248,7 @@ $app->post
         }
 );
 
-//routing playbusAccesosActualizar
-//accediendo VIA URL
-// Controlado Insertar Accesos
+//routing playbusAccesosEliminar
 $app->options('/api/playbusAccesosEliminar/', function ($request, $response, $args) {
     return $response;
 });
@@ -302,7 +284,6 @@ $app->post
 );
 
 //routing playbusEquipos
-//accediendo VIA URL
 $app->options('/api/playbusEquipos/', function ($request, $response, $args) {
     return $response;
 });
@@ -342,8 +323,7 @@ $app->post
         }
 );
 
-//routing playbusEquipos
-//accediendo VIA URL
+//routing playbusEquiposActualizar
 $app->options('/api/playbusEquiposActualizar/', function ($request, $response, $args) {
     return $response;
 });
@@ -382,8 +362,7 @@ $app->post
         }
 );
 
-//routing playbusEquipos
-//accediendo VIA URL
+//routing playbusEquiposEliminar
 $app->options('/api/playbusEquiposEliminar/', function ($request, $response, $args) {
     return $response;
 });
@@ -419,7 +398,6 @@ $app->post
 );
 
 //routing playbusPerfiles
-//accediendo VIA URL
 $app->post
 (
     '/api/playbusPerfiles/', function(){
@@ -451,7 +429,6 @@ $app->post
 );
 
 //routing playbusUsuarios
-//accediendo VIA URL
 $app->post
 (
     '/api/playbusUsuarios/', function(){
@@ -483,7 +460,6 @@ $app->post
         echo $dJson;
         }
 );
-
 
 //inicializamos la aplicacion(API)
 $app->run();

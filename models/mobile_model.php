@@ -156,6 +156,7 @@ class mobile_model{
 		
     }
     
+    // Actualizar equipo
     public function upd_equipo($id,$nombre,$codigo,$empresa,$flota){
 
         $sql = " UPDATE playbus_equipos ";
@@ -174,6 +175,7 @@ class mobile_model{
 
     }
 
+    // Eliminar equipo
     public function del_equipo($id){
 
         $sql = " DELETE from playbus_equipos ";
@@ -212,6 +214,7 @@ class mobile_model{
 		
     }
     
+    // Actualizar accesos
     public function udp_acceso($id,$user,$pws,$perfil,$estado){
 
         $sql = " UPDATE playbus_acceso ";
@@ -230,6 +233,7 @@ class mobile_model{
 
     }
 
+    // Eliminar accesos
     public function del_acceso($id){
 
         $sql = " DELETE from playbus_acceso ";

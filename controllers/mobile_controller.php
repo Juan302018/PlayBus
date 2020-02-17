@@ -22,19 +22,19 @@ class mobile_controller
                 $valor = $class->get_acceso();
                 return $valor;
         }
-
+        // Listar acceso por id
         function obtenerAcceso($usuario){
                 $class = new mobile_model();
                 $valor = $class->get_accesoByUser($usuario);
                 return $valor;
         }
-	    // Listar todos los perfiles
+	// Listar todos los perfiles
         function listarTodosLosPerfiles(){
                 $class = new mobile_model();
                 $valor = $class->get_perfil();
                 return $valor;
 	    }
-		// Listar todos los equipos
+	// Listar todos los equipos
         function listarTodosLosEquipos(){
                 $class = new mobile_model();
                 $valor = $class->get_equipo();
@@ -46,13 +46,13 @@ class mobile_controller
                 $valor = $class->reg_equipo($nombre,$codigo,$empresa,$flota);
                 return $valor;
         }
-
+        // Actualizar equipos
         function updEquipo($id,$nombre,$codigo,$empresa,$flota){
                 $class = new mobile_model();
                 $valor = $class->upd_equipo($id,$nombre,$codigo,$empresa,$flota);
                 return $valor;
         }
-
+        // Eliminar equipos
         function delEquipo($id){
                 $class = new mobile_model();
                 $valor = $class->del_equipo($id);
@@ -71,13 +71,13 @@ class mobile_controller
                 $valor = $class->reg_acceso($user,$pws,$perfil,$estado);
                 return $valor;
         }
-
+        // Actualizar equipo
         function udpAcceso($id,$user,$pws,$perfil,$estado){
                 $class = new mobile_model();
                 $valor= $class->udp_acceso($id,$user,$pws,$perfil,$estado);
                 return $valor;
         }
-
+        // Eliminar acceso
         function delAcceso($id){
                 $class = new mobile_model();
                 $valor= $class->del_acceso($id);
