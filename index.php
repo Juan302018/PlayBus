@@ -342,6 +342,82 @@ $app->post
         }
 );
 
+//routing playbusEquipos
+//accediendo VIA URL
+$app->options('/api/playbusEquiposActualizar/', function ($request, $response, $args) {
+    return $response;
+});
+
+$app->post
+(    
+    '/api/playbusEquiposActualizar/', function() use ($app){
+
+        $parameters = json_decode($app->request()->getBody(), TRUE);
+        $id = $parameters['id'];
+        $nombre = $parameters['nombre'];
+        $codigo = $parameters['codigo'];
+        $empresa = $parameters['empresa'];
+		$flota = $parameters['flota'];
+        // Valida parametros de entrada
+        if ($id != null && $nombre != null &&  $codigo != null &&  $empresa != null &&  $flota != null){
+            $mc= new mobile_controller();
+            $d1 = $mc->updEquipo($id,$nombre,$codigo,$empresa,$flota);
+            // Valida respuesta
+            if ($d1 == '1'){
+                $codRespuesta = 0;
+                $msgRespuesta = "Datos actualizado OK";
+    
+            }else{
+                $codRespuesta = -1;
+                $msgRespuesta = "No se logra actualizar";
+            }
+        }else{
+            $codRespuesta = -2;
+            $msgRespuesta = "Parámetros requeridos";
+        }
+
+        $dData = array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta);
+        $dJson = json_encode($dData, JSON_FORCE_OBJECT);
+        echo $dJson;
+        }
+);
+
+//routing playbusEquipos
+//accediendo VIA URL
+$app->options('/api/playbusEquiposEliminar/', function ($request, $response, $args) {
+    return $response;
+});
+
+$app->post
+(    
+    '/api/playbusEquiposEliminar/', function() use ($app){
+
+        $parameters = json_decode($app->request()->getBody(), TRUE);
+        $id = $parameters['id'];
+        // Valida parametros de entrada
+        if ($id != null){
+            $mc= new mobile_controller();
+            $d1 = $mc->delEquipo($id);
+            // Valida respuesta
+            if ($d1 == '1'){
+                $codRespuesta = 0;
+                $msgRespuesta = "Datos eliminados OK";
+    
+            }else{
+                $codRespuesta = -1;
+                $msgRespuesta = "No se logra eliminar";
+            }
+        }else{
+            $codRespuesta = -2;
+            $msgRespuesta = "Parámetros requeridos";
+        }
+
+        $dData = array("codRespuesta"=>$codRespuesta, "msgRespuesta"=>$msgRespuesta);
+        $dJson = json_encode($dData, JSON_FORCE_OBJECT);
+        echo $dJson;
+        }
+);
+
 //routing playbusPerfiles
 //accediendo VIA URL
 $app->post

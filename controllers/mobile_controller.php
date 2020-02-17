@@ -46,6 +46,19 @@ class mobile_controller
                 $valor = $class->reg_equipo($nombre,$codigo,$empresa,$flota);
                 return $valor;
         }
+
+        function updEquipo($id,$nombre,$codigo,$empresa,$flota){
+                $class = new mobile_model();
+                $valor = $class->upd_equipo($id,$nombre,$codigo,$empresa,$flota);
+                return $valor;
+        }
+
+        function delEquipo($id){
+                $class = new mobile_model();
+                $valor = $class->del_equipo($id);
+                return $valor;
+        }
+
         // Registrar perfiles de usuarios
         function regPerfil($nombre){
                 $class = new mobile_model();
